@@ -10,7 +10,6 @@ Vue.xmAppConfig = {
 }
 
 xmGlobalConfig.installedApps = [
-  'xm-common',
   xmGlobalConfig.projectName
 ]
 export default {}

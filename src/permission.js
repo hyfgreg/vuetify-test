@@ -1,14 +1,15 @@
+import Vue from 'vue'
 import router from './router'
 import store from './store'
 
 router.beforeEach(async(to, from, next) => {
   // 判断是否登录, 如果未登录, 则跳转到登录页面
-  const authInfo = store.state['xm-common'].authInfo
+  const authInfo = store.state['auth'].authInfo
   const user = authInfo ? authInfo.user_id : null
 
   if (user !== null) {
     if (to.path === '/login') {
-      next({ name: 'HelloWorld' })
+      next({ name: 'home' })
       return
     }
     // 检查权限是否初始化，未初始化先初始化权限
@@ -34,8 +35,8 @@ router.beforeEach(async(to, from, next) => {
         next({ ...to, replace: true })
         return
       } catch (err) {
-        this.$snotify.error('查询权限出错')
-        store.commit('xm-common/authInfoSetter', {
+        Vue.prototype.$snotify.error('查询权限出错')
+        store.commit('auth/authInfoSetter', {
           user_id: null,
           key: null,
           username: null

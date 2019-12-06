@@ -30,5 +30,5 @@ export default new Vuex.Store({
   getters,
   debug,
   actions,
-  modules: { ...Vue.xmAppConfig.storeModules, ...modules }
+  modules: { ...modules }
 })

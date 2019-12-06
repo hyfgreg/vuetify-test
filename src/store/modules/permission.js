@@ -1,6 +1,7 @@
 import { api } from '@/apis'
 import { asyncRoutes, constantRoutes } from '@/router'
-import originMenu from '@/menu'
+// import originMenu from '@/menu'
+const originMenu = []
 
 function hasMenuPermission(routes, menu) {
   return routes.some(route => route.name === menu.to.name)
