@@ -10,7 +10,10 @@ const constantRoutes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/auth/login')
+    component: () => import('@/views/auth/login'),
+    meta: {
+      ignoreAuth: true
+    }
   },
   {
     path: '/',
@@ -19,7 +22,8 @@ const constantRoutes = [
     meta: {
       menu: true,
       icon: 'home',
-      title: '首页'
+      title: '首页',
+      ignoreAuth: true
     }
   }
 ]
@@ -37,11 +41,11 @@ const asyncRoutes = [
       menu: true,
       icon: 'pageview',
       title: '关于',
-      permission: ['take_away']
+      permission: ['take_away'],
+      ignoreAuth: false
     }
   },
   {
-    // name: 'test',
     path: '/test',
     children: [
       {
@@ -51,7 +55,8 @@ const asyncRoutes = [
           menu: true,
           icon: 'pageview',
           title: '测试1',
-          permission: ['take_away']
+          permission: ['take_away'],
+          ignoreAuth: true
         }
       }
     ],
@@ -59,29 +64,44 @@ const asyncRoutes = [
       menu: true,
       icon: 'pageview',
       title: '测试',
-      permission: ['take_away']
+      permission: ['take_away'],
+      ignoreAuth: true
     }
   },
   {
-    // name: 'test',
     path: '/test2',
     children: [
       {
-        path: 'index',
-        name: 'test2',
+        path: 'test22',
+        name: 'test22',
         meta: {
           menu: true,
           icon: 'pageview',
-          title: '测试2',
-          permission: ['take_away']
-        }
+          title: '测试22',
+          permission: ['take_away'],
+          ignoreAuth: true
+        },
+        children: [
+          {
+            path: 'index',
+            name: 'test222',
+            meta: {
+              menu: true,
+              icon: 'pageview',
+              title: '测试222',
+              permission: ['take_away'],
+              ignoreAuth: true
+            }
+          }
+        ]
       }
     ],
     meta: {
       menu: true,
       icon: 'pageview',
       title: '测试2',
-      permission: ['take_away']
+      permission: ['take_away'],
+      ignoreAuth: true
     }
   }
 ]

@@ -91,7 +91,7 @@ export default {
               username: this.theForm.username
             })
             .then(() => {
-              this.$router.replace({ path: this.$route.query.redirect || '/' })
+              this.$router.replace({ path: this.$route.query.redirect || '/' }).catch(() => { return }) // 不加这个catch会报错
             })
         })
         .catch(error => {

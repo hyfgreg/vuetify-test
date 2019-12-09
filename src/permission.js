@@ -48,11 +48,7 @@ router.beforeEach(async(to, from, next) => {
     }
   } else {
     // 未登录
-    if (
-      to.meta &&
-      (!to.meta.permission ||
-        (Array.isArray(to.meta.permission) && to.meta.permission.length === 0))
-    ) {
+    if (to.meta && to.meta.ignoreAuth) {
       // 可以匿名访问
       next()
       return

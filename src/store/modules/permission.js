@@ -1,5 +1,5 @@
 import { api } from '@/apis'
-import { asyncRoutes, constantRoutes } from '@/router'
+import { asyncRoutes, constantRoutes, resetRouter } from '@/router'
 // import originMenu from '@/menu'
 
 function hasMenuPermission(routes, menu) {
@@ -164,6 +164,9 @@ const actions = {
       }
       resolve()
     })
+  },
+  resetRouter() {
+    resetRouter()
   }
 }
 

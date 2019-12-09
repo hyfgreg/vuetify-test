@@ -1,7 +1,6 @@
 <template>
   <v-list-item
     v-if="!item.children"
-    :key="item.path"
     :to="resolvePath(basePath, item.path)"
     color="primary"
   >
@@ -14,9 +13,9 @@
   </v-list-item>
   <v-list-group
     v-else
-    :key="item.title"
-    :prepend-icon="item.icon"
+    :prepend-icon="isSubMenu?'': item.icon"
     no-action
+    :sub-group="isSubMenu"
   >
     <template v-slot:activator>
       <v-list-item-content>
@@ -24,7 +23,7 @@
       </v-list-item-content>
     </template>
     <template v-for="subItem in item.children">
-      <SideBarItemList :key="`${item.title}/${subItem.title}`" :item="subItem" :base-path="resolvePath(basePath, item.path)" :is-sub-menu="true" />
+      <SideBarItem :key="resolvePath(basePath, item.path, subItem.path)" :item="subItem" :base-path="resolvePath(basePath, item.path)" :is-sub-menu="true" />
     </template>
   </v-list-group>
 </template>
@@ -33,7 +32,7 @@
 import path from 'path'
 
 export default {
-  name: 'SideBarItemList',
+  name: 'SideBarItem',
   props: {
     item: {
       type: Object,

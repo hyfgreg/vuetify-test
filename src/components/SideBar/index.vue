@@ -7,7 +7,7 @@
     app
   >
     <v-list nav dense>
-      <SidebarItem v-for="item in items" :key="item.title" :item="item" />
+      <SidebarItem v-for="item in items" :key="item.path" :item="item" />
     </v-list>
   </v-navigation-drawer>
 </template>

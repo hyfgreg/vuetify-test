@@ -45,7 +45,7 @@ export default {
     },
     logout() {
       this.$store
-        .dispatch('auth/authInfoSetter', {})
+        .dispatch('auth/authInfoSetter', {}).then(() => this.$store.dispatch('permission/reset')).then(() => this.$store.dispatch('permission/resetRouter'))
         .then(() => this.$router.push({ name: 'login' }))
     }
   }
