@@ -4,39 +4,87 @@ import Home from '../views/Home.vue'
 
 Vue.use(Router)
 
+// route的权限, 当没有meta或者meta.permission时, 表示该route不需要任何权限即可访问
+// 常量路由，包含首页、auth
 const constantRoutes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/auth/login'),
-    meta: {
-      ignoreAuth: true
-    }
+    component: () => import('@/views/auth/login')
   },
   {
     path: '/',
     name: 'home',
     component: Home,
     meta: {
-      ignoreAuth: false
+      menu: true,
+      icon: 'home',
+      title: '首页'
     }
-  },
+  }
+]
+// 异步路由，根据user的role对应的permissions和meta.permission配置来确定
+const asyncRoutes = [
   {
     path: '/about',
     name: 'about',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/About.vue'),
     meta: {
-      ignoreAuth: false
+      menu: true,
+      icon: 'pageview',
+      title: '关于',
+      permission: ['take_away']
+    }
+  },
+  {
+    // name: 'test',
+    path: '/test',
+    children: [
+      {
+        path: 'index',
+        name: 'test1',
+        meta: {
+          menu: true,
+          icon: 'pageview',
+          title: '测试1',
+          permission: ['take_away']
+        }
+      }
+    ],
+    meta: {
+      menu: true,
+      icon: 'pageview',
+      title: '测试',
+      permission: ['take_away']
+    }
+  },
+  {
+    // name: 'test',
+    path: '/test2',
+    children: [
+      {
+        path: 'index',
+        name: 'test2',
+        meta: {
+          menu: true,
+          icon: 'pageview',
+          title: '测试2',
+          permission: ['take_away']
+        }
+      }
+    ],
+    meta: {
+      menu: true,
+      icon: 'pageview',
+      title: '测试2',
+      permission: ['take_away']
     }
   }
 ]
-
-// 固定的路由，包括HelloWorld和xm-common的路由
-// loadApp(constantRoutes, 'routes', constantAppList)
-const asyncRoutes = []
 
 // const appList = [...Vue.xmGlobalConfig.installedApps].filter(
 //   item => !constantAppList.includes(item)

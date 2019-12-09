@@ -34,7 +34,7 @@ const actions = {
       localStorage.removeItem(TOKEN)
     }
   },
-  permissionsSetter: (context) => {
+  permissionsSetter: context => {
     if (context.state.authInfo && context.state.authInfo.user_id) {
       api
         .getAllPermissions()

@@ -4,9 +4,7 @@ function resolve(dir) {
 }
 
 module.exports = {
-  'transpileDependencies': [
-    'vuetify'
-  ],
+  transpileDependencies: ['vuetify'],
   lintOnSave: process.env.NODE_ENV === 'development',
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

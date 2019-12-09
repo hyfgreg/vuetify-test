@@ -25,7 +25,11 @@ function initClient(config) {
   const notifyOnError = config.notifyOnError || false
   client.interceptors.request.use(_config => {
     // 在访问域名等于baseURL或者域名为空(默认为baseURL) 时候, 添加auth
-    if (!_config.ignoreAuth && (_config.url.indexOf(httpOption.baseURL) === 0 || !_config.url.includes('http'))) {
+    if (
+      !_config.ignoreAuth &&
+      (_config.url.indexOf(httpOption.baseURL) === 0 ||
+        !_config.url.includes('http'))
+    ) {
       // 如果action中需要使用xmHttp的话, 从store获取会造成循环依赖
       // let authInfo = store.state.auth.authInfo
       const authInfo = JSON.parse(localStorage.getItem(token))
@@ -42,11 +46,7 @@ function initClient(config) {
           },
           httpCommonParams
         )
-        _config.data = Object.assign(
-          {},
-          _config.data,
-          httpCommonData
-        )
+        _config.data = Object.assign({}, _config.data, httpCommonData)
         return _config
       }
     }
@@ -68,15 +68,26 @@ function initClient(config) {
 
       if (status === 401) {
         if (!eventHub.$snotify.get(notifyId)) {
-          eventHub.$snotify.error('认证信息过期, 请重新登录', '警告', { id: notifyId, timeout: null })
+          eventHub.$snotify.error('认证信息过期, 请重新登录', '警告', {
+            id: notifyId,
+            timeout: null
+          })
         }
         localStorage.removeItem(token)
         setTimeout(window.location.reload.bind(window.location), 2000)
         return new Promise(() => {})
-      } else if (error.response && error.response.data && error.response.data.error_code) {
+      } else if (
+        error.response &&
+        error.response.data &&
+        error.response.data.error_code
+      ) {
         console.log(error.response.data.error_reason)
         if (notifyOnError) {
-          eventHub.$snotify.error(ErrorReasonMap[error.response.data.error_code] || error.response.data.error_reason, '服务请求错误')
+          eventHub.$snotify.error(
+            ErrorReasonMap[error.response.data.error_code] ||
+              error.response.data.error_reason,
+            '服务请求错误'
+          )
         }
       }
       return Promise.reject(error)

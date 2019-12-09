@@ -1,19 +1,12 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" :clipped="clipped" enable-resize-watcher fixed app>
-      <!-- <NavigationList :items="items" /> -->
-    </v-navigation-drawer>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-      :clipped-left="clipped"
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+    <side-bar ref="SideBar" />
+    <v-app-bar app color="primary" dark :clipped-left="clipped">
+      <v-app-bar-nav-icon @click.stop="$refs.SideBar.toggleDrawer()" />
 
       <v-spacer />
 
-      <v-btn v-if="!GM_username" text :to="{'name': 'login'}">
+      <v-btn v-if="!GM_username" text @click.stop="login">
         登录
       </v-btn>
       <v-btn v-if="GM_username" text>
@@ -32,12 +25,13 @@
 </template>
 
 <script>
+import SideBar from './components/SideBar/index.vue'
 
 export default {
   name: 'App',
 
   components: {
-
+    SideBar
   },
 
   data: () => ({
@@ -46,10 +40,13 @@ export default {
     items: []
   }),
   methods: {
+    login() {
+      this.$router.push({ name: 'login' })
+    },
     logout() {
-      this.$store.dispatch('auth/authInfoSetter', {}).then(() =>
-        this.$router.push({ 'name': 'login' })
-      )
+      this.$store
+        .dispatch('auth/authInfoSetter', {})
+        .then(() => this.$router.push({ name: 'login' }))
     }
   }
 }

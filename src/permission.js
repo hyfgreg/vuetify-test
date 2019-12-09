@@ -35,6 +35,7 @@ router.beforeEach(async(to, from, next) => {
         next({ ...to, replace: true })
         return
       } catch (err) {
+        console.log(err)
         Vue.prototype.$snotify.error('查询权限出错')
         store.commit('auth/authInfoSetter', {
           user_id: null,
@@ -47,7 +48,11 @@ router.beforeEach(async(to, from, next) => {
     }
   } else {
     // 未登录
-    if (to.meta.ignoreAuth) {
+    if (
+      to.meta &&
+      (!to.meta.permission ||
+        (Array.isArray(to.meta.permission) && to.meta.permission.length === 0))
+    ) {
       // 可以匿名访问
       next()
       return

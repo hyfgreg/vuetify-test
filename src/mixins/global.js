@@ -21,7 +21,7 @@ export default {
     },
     GM_timeFormat(value) {
       if (value) {
-        if (typeof (value) === 'string' && value.indexOf('+') === -1) {
+        if (typeof value === 'string' && value.indexOf('+') === -1) {
           value = value + '+08:00'
         }
         const date = new Date(value)

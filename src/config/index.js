@@ -9,7 +9,5 @@ Vue.xmAppConfig = {
   actionMap: {}
 }
 
-xmGlobalConfig.installedApps = [
-  xmGlobalConfig.projectName
-]
+xmGlobalConfig.installedApps = [xmGlobalConfig.projectName]
 export default {}

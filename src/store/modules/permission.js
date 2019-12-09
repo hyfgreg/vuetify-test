@@ -1,12 +1,12 @@
 import { api } from '@/apis'
 import { asyncRoutes, constantRoutes } from '@/router'
 // import originMenu from '@/menu'
-const originMenu = []
 
 function hasMenuPermission(routes, menu) {
   return routes.some(route => route.name === menu.to.name)
 }
 
+// eslint-disable-next-line no-unused-vars
 function filterAsyncMenu(routes, menus) {
   const ret = []
   menus.forEach(menu => {
@@ -21,6 +21,28 @@ function filterAsyncMenu(routes, menus) {
       if (hasMenuPermission(routes, menu)) {
         ret.push(menu)
       }
+    }
+  })
+  return ret
+}
+
+function generateMenusFromRoutes(routes) {
+  const ret = []
+  routes.forEach(route => {
+    const menuForOneRoute = {}
+    if (route.meta && route.meta.menu) {
+      menuForOneRoute.title = route.meta.title || false
+      menuForOneRoute.icon = route.meta.icon || false
+      menuForOneRoute.path = route.path || 'no-path'
+      menuForOneRoute.name = route.name || 'no-name'
+      if (
+        route.children &&
+        Array.isArray(route.children) &&
+        route.children.length > 0
+      ) {
+        menuForOneRoute.children = generateMenusFromRoutes(route.children)
+      }
+      ret.push(menuForOneRoute)
     }
   })
   return ret
@@ -121,7 +143,7 @@ const actions = {
   },
   generateMenus({ commit, state }) {
     return new Promise(resolve => {
-      const accessedMenus = filterAsyncMenu(state.routes, originMenu)
+      const accessedMenus = generateMenusFromRoutes(state.routes)
       commit('SET_ITEM', { key: 'menus', value: accessedMenus })
       resolve(accessedMenus)
     })
