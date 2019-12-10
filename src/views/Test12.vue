@@ -1,5 +1,5 @@
 <template>
   <div class="about">
-    <h1>This is an test22 inde page</h1>
+    <h1>This is an test12 index page</h1>
   </div>
 </template>

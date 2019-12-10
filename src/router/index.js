@@ -47,17 +47,28 @@ const asyncRoutes = [
   {
     path: '/test',
     name: 'test',
+    component: () => import('@/components/SubRouterView/index.vue'),
     children: [
       {
         path: 'index',
         name: 'test1',
-        component: () => import('@/views/About.vue'),
+        component: () => import('@/views/Test1.vue'),
         meta: {
           menu: true,
           icon: 'pageview',
           title: '测试1',
-          permission: ['take_away'],
-          ignoreAuth: true
+          permission: ['take_away']
+        }
+      },
+      {
+        path: 'test_index',
+        name: 'test12',
+        component: () => import('@/views/Test12.vue'),
+        meta: {
+          menu: true,
+          icon: 'pageview',
+          title: '测试2',
+          permission: ['take_away']
         }
       }
     ],
@@ -72,10 +83,12 @@ const asyncRoutes = [
   {
     path: '/test2',
     name: 'test2',
+    component: () => import('@/components/SubRouterView/index.vue'),
     children: [
       {
         path: 'test22',
         name: 'test22',
+        component: () => import('@/components/SubRouterView/index.vue'),
         meta: {
           menu: true,
           icon: 'pageview',
@@ -87,11 +100,22 @@ const asyncRoutes = [
           {
             path: 'index',
             name: 'test222',
-            component: () => import('@/views/Test22Index.vue'),
+            component: () => import('@/views/Test2.vue'),
             meta: {
               menu: true,
               icon: 'pageview',
               title: '测试222',
+              permission: ['take_away']
+            }
+          },
+          {
+            path: 'test2222_index',
+            name: 'test2222',
+            component: () => import('@/views/Test22.vue'),
+            meta: {
+              menu: true,
+              icon: 'pageview',
+              title: '测试2222',
               permission: ['take_away']
             }
           }

@@ -14,7 +14,7 @@
   </v-list-item>
   <v-list-group
     v-else
-    :value="activeMenu"
+    :value="matchedRouteName === item.name"
     :prepend-icon="isSubMenu?'': item.icon"
     :sub-group="isSubMenu"
     no-action
@@ -30,6 +30,8 @@
         :item="subItem"
         :base-path="resolvePath(basePath, item.path)"
         :is-sub-menu="true"
+        :matched-route-name="matchedRouteLeft.length > 0 ? matchedRouteLeft[0].name : ''"
+        :matched-route-left="matchedRouteLeft.length > 0 ? matchedRouteLeft.slice(1) : []"
       />
     </template>
   </v-list-group>
@@ -55,30 +57,13 @@ export default {
       type: Boolean,
       default: false
     },
-    isMenuActive: {
-      type: Boolean,
-      default: false
-    },
     matchedRouteName: {
       type: String,
       default: ''
-    }
-  },
-  computed: {
-    activeMenu: {
-      get() {
-        const matched = this.$route.matched
-        const currentPath = this.resolvePath(this.basePath, this.item.path)
-        for (const match of matched) {
-          if (match.regex.test(currentPath)) {
-            return true
-          }
-        }
-        return false
-      },
-      set(value) {
-        console.log(this.item, value)
-      }
+    },
+    matchedRouteLeft: {
+      type: Array,
+      default() { return [] }
     }
   },
   methods: {

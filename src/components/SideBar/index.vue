@@ -8,18 +8,24 @@
   >
     <!-- <slot name="activator" :drawer="drawer" /> -->
     <v-list nav dense>
-      <SidebarItem v-for="item in items" :key="item.path" :item="item" :matched-route-name="matchedRouteName" />
+      <SideBarItem
+        v-for="item in items"
+        :key="item.path"
+        :item="item"
+        :matched-route-name="matchedRouteName"
+        :matched-route-left="matchedRouteLeft"
+      />
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import SidebarItem from './SidebarItem.vue'
+import SideBarItem from './SideBarItem.vue'
 
 export default {
   name: 'SideBar',
-  components: { SidebarItem },
+  components: { SideBarItem },
   data() {
     return {
       drawer: true
@@ -37,7 +43,7 @@ export default {
     },
     matchedRouteLeft() {
       if (this.$route.matched && Array.isArray(this.$route.matched) && this.$route.matched.length > 0) {
-        return this.$route.matched.splice(1)
+        return this.$route.matched.slice(1)
       }
       return []
     }
