@@ -14,7 +14,7 @@
   </v-list-item>
   <v-list-group
     v-else
-    :value="matchedRouteName === item.name"
+    :value="activeMenu"
     :prepend-icon="isSubMenu?'': item.icon"
     :sub-group="isSubMenu"
     no-action
@@ -64,6 +64,11 @@ export default {
     matchedRouteLeft: {
       type: Array,
       default() { return [] }
+    }
+  },
+  computed: {
+    activeMenu() {
+      return this.matchedRouteName === this.item.name
     }
   },
   methods: {
