@@ -35,8 +35,7 @@ const asyncRoutes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    component: () => import('@/views/About.vue'),
     meta: {
       menu: true,
       icon: 'pageview',
@@ -47,10 +46,12 @@ const asyncRoutes = [
   },
   {
     path: '/test',
+    name: 'test',
     children: [
       {
         path: 'index',
         name: 'test1',
+        component: () => import('@/views/About.vue'),
         meta: {
           menu: true,
           icon: 'pageview',
@@ -70,6 +71,7 @@ const asyncRoutes = [
   },
   {
     path: '/test2',
+    name: 'test2',
     children: [
       {
         path: 'test22',
@@ -85,12 +87,12 @@ const asyncRoutes = [
           {
             path: 'index',
             name: 'test222',
+            component: () => import('@/views/Test22Index.vue'),
             meta: {
               menu: true,
               icon: 'pageview',
               title: '测试222',
-              permission: ['take_away'],
-              ignoreAuth: true
+              permission: ['take_away']
             }
           }
         ]

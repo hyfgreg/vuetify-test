@@ -6,8 +6,9 @@
     fixed
     app
   >
+    <!-- <slot name="activator" :drawer="drawer" /> -->
     <v-list nav dense>
-      <SidebarItem v-for="item in items" :key="item.path" :item="item" />
+      <SidebarItem v-for="item in items" :key="item.path" :item="item" :matched-route-name="matchedRouteName" />
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -21,13 +22,25 @@ export default {
   components: { SidebarItem },
   data() {
     return {
-      drawer: false
+      drawer: true
     }
   },
   computed: {
     ...mapGetters({
       items: 'permission/menus'
-    })
+    }),
+    matchedRouteName() {
+      if (this.$route.matched && this.$route.matched.length > 0) {
+        return this.$route.matched[0].name
+      }
+      return ''
+    },
+    matchedRouteLeft() {
+      if (this.$route.matched && Array.isArray(this.$route.matched) && this.$route.matched.length > 0) {
+        return this.$route.matched.splice(1)
+      }
+      return []
+    }
   },
   methods: {
     toggleDrawer() {
