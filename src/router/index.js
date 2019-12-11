@@ -25,6 +25,14 @@ const constantRoutes = [
       title: '首页',
       ignoreAuth: true
     }
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: () => import('@/views/error-page/404.vue'),
+    meta: {
+      ignoreAuth: true
+    }
   }
 ]
 // 异步路由，根据user的role对应的permissions和meta.permission配置来确定
@@ -140,7 +148,9 @@ const asyncRoutes = [
 // loadApp(asyncRoutes, 'routes', appList)
 
 // 暂时没有专门设计的404页面，用HelloWorld替代
-asyncRoutes.push({ path: '*', redirect: '/', hidden: true })
+asyncRoutes.push({ path: '*', redirect: to => {
+  return { name: '404', query: { fullPath: to.fullPath }}
+} })
 
 const createRouter = () =>
   new Router({
