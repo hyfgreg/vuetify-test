@@ -2,9 +2,7 @@
   <v-container class="text-center" fill-height>
     <v-layout align-center justify-center fill-height>
       <v-flex xs12>
-        <p class="display-4">(/ □ \)~哦豁</p>
-        <p class="display-2">找不到该页!</p>
-        <p class="display-1">{{ targetURL }}</p>
+        <p class="display-2">找不到该页  {{ targetURL }}</p>
         <p><v-btn color="primary" text @click.stop="goHome">回到首页</v-btn></p>
       </v-flex>
     </v-layout>
