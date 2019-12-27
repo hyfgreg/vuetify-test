@@ -40,13 +40,14 @@ function initClient(config) {
         _config.params = Object.assign(
           {},
           _config.params,
-          {
-            user_id: authInfo.user_id,
-            key: authInfo.key
-          },
+          // {
+          //   user_id: authInfo.user_id,
+          //   key: authInfo.key
+          // },
           httpCommonParams
         )
         _config.data = Object.assign({}, _config.data, httpCommonData)
+        _config.headers = Object.assign({}, _config.headers, { 'Authorization': `token ${authInfo.user_id} ${authInfo.key}` })
         return _config
       }
     }

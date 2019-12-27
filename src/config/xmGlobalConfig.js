@@ -23,6 +23,10 @@ function getBaseUrl() {
 
 const xmGlobalConfig = {
   // institution_id: institutionID,
+
+  appBarTitle: 'Xmov' || process.env.VUE_APP_projectName, // 修改Xmov为实际的项目app bar title，显示大写字母
+  sideBar: true, // 是否启用侧边栏
+
   projectName: process.env.VUE_APP_projectName,
   projectTokenName: process.env.VUE_APP_projectName + '_token',
   eventHub: eventHub,

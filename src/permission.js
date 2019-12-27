@@ -1,8 +1,15 @@
 import Vue from 'vue'
 import router from './router'
 import store from './store'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
+NProgress.configure({ showSpinner: false })
 
 router.beforeEach(async(to, from, next) => {
+  // start progress bar
+  NProgress.start()
+
   // 判断是否登录, 如果未登录, 则跳转到登录页面
   const authInfo = store.state['auth'].authInfo
   const user = authInfo ? authInfo.user_id : null
@@ -60,4 +67,9 @@ router.beforeEach(async(to, from, next) => {
       return
     }
   }
+})
+
+router.afterEach(() => {
+  // finish progress bar
+  NProgress.done()
 })

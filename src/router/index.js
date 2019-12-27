@@ -43,11 +43,11 @@ const asyncRoutes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('@/views/About.vue'),
+    component: () => import('@/views/DataTableView.vue'),
     meta: {
       menu: true,
       icon: 'pageview',
-      title: '关于',
+      title: '表格',
       permission: ['take_away'],
       ignoreAuth: false
     }

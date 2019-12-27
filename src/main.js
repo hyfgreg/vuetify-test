@@ -9,6 +9,8 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 // eslint-disable-next-line no-unused-vars
 import vueSnotify from './plugins/vue-snotify'
+// eslint-disable-next-line no-unused-vars
+// import vueProgressbar from './plugins/vue-progressbar'
 
 import './permission' // permission control
 

@@ -1,7 +1,8 @@
 <template>
   <v-app>
-    <app-bar @toggle-side-bar="$refs.SideBar.toggleDrawer()" />
-    <side-bar ref="SideBar" />
+    <!-- <vue-progress-bar /> -->
+    <app-bar @toggle-side-bar="sideBar && $refs.SideBar.toggleDrawer()" />
+    <side-bar v-if="sideBar" ref="SideBar" />
     <v-content style="height: calc(100vh - 64px)">
       <transition name="fade-transform" mode="out-in">
         <router-view />
@@ -12,6 +13,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import AppBar from './components/AppBar/index.vue'
 import SideBar from './components/SideBar/index.vue'
 
@@ -20,6 +22,17 @@ export default {
   components: {
     AppBar,
     SideBar
+  },
+  data() {
+    return {
+      sideBar: Vue.xmGlobalConfig.sideBar
+    }
   }
 }
 </script>
+
+<style>
+#nprogress .bar {
+      background: rgb(143, 255, 199) !important;
+  }
+</style>

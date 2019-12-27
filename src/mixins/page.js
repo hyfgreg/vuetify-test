@@ -23,7 +23,8 @@ export default {
           resolve(null)
         })
       },
-      allowFetchDataErrorDisplay: true
+      allowFetchDataErrorDisplay: true,
+      loading: false
     }
   },
   computed: {
@@ -55,6 +56,15 @@ export default {
       }
 
       return newQuery
+    },
+    tablePageData() {
+      if (Array.isArray(this.responseData)) {
+        return this.responseData
+      } else if (this.responseData.results) {
+        return this.responseData.results
+      } else {
+        return []
+      }
     }
   },
   methods: {
@@ -72,13 +82,16 @@ export default {
     },
     // 获取数据, 调用http函数, 获取数据后将结果数据放入this.responseData
     fetchData() {
+      this.loading = true
       this.fetchDataFunction(
         Object.assign({}, this.filteredQuery, this.extra_query)
       ).then(response => {
+        this.loading = false
         if (response && response.data) {
           this.resolveData(response.data)
         }
       }).catch(err => {
+        this.loading = false
         if (!this.allowFetchDataErrorDisplay) return
         this.resolveError(err)
       })

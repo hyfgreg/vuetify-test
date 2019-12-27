@@ -1,6 +1,7 @@
 <template>
   <v-app-bar app color="primary" dark clipped-left>
-    <v-app-bar-nav-icon @click.stop="$emit('toggle-side-bar')" />
+    <v-app-bar-nav-icon v-if="sideBar" @click.stop="$emit('toggle-side-bar')" />
+    <v-toolbar-title>{{ appBarTitle.toUpperCase() }}</v-toolbar-title>
     <v-spacer />
     <v-btn v-if="!GM_username && $route.name !== 'login'" text @click.stop="login">
       登录
@@ -15,8 +16,16 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
 export default {
   name: 'AppBar',
+  data() {
+    return {
+      appBarTitle: Vue.xmGlobalConfig.appBarTitle,
+      sideBar: Vue.xmGlobalConfig.sideBar
+    }
+  },
   methods: {
     login() {
       this.$router.push({ name: 'login' })
