@@ -19,6 +19,9 @@
         </v-col>
         <div style="flex-grow: 10000" />
         <v-col>
+          <v-btn color="primary">新增</v-btn>
+        </v-col>
+        <v-col>
           <v-btn color="primary">确定</v-btn>
         </v-col>
       </v-row>

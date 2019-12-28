@@ -10,7 +10,7 @@ import vuetify from './plugins/vuetify'
 // eslint-disable-next-line no-unused-vars
 import vueSnotify from './plugins/vue-snotify'
 // eslint-disable-next-line no-unused-vars
-// import vueProgressbar from './plugins/vue-progressbar'
+import progress from './plugins/progress'
 
 import './permission' // permission control
 

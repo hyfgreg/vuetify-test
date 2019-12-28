@@ -3,7 +3,7 @@
     <v-row class="flex-column flex-wrap" style="height:100%">
       <v-col cols="1" style="max-width:100%">
         <slot name="header">
-          <div>这里是header</div>
+          <div>slot: header, 用filter项替代</div>
         </slot>
       </v-col>
       <v-col style="overflow:auto; max-width:100%">
@@ -13,7 +13,7 @@
       </v-col>
       <v-col cols="1" style="max-width:100%">
         <slot name="footer">
-          <div>这里是footer</div>
+          <div>slot: footer, 用分页替代</div>
         </slot>
       </v-col>
     </v-row>

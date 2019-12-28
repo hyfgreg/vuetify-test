@@ -2,9 +2,6 @@
 
 import Vue from 'vue'
 
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
-import 'vue-snotify/styles/material.css'
-
 export const eventHub = new Vue()
 Vue.prototype.$eventHub = eventHub // 用于组件之间发emit事件, 无store和router
 
@@ -23,6 +20,11 @@ function getBaseUrl() {
 
 const xmGlobalConfig = {
   // institution_id: institutionID,
+
+  // progress颜色配置
+  progress: {
+    enable: true
+  },
 
   appBarTitle: 'Xmov' || process.env.VUE_APP_projectName, // 修改Xmov为实际的项目app bar title，显示大写字母
   sideBar: true, // 是否启用侧边栏

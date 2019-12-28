@@ -1,14 +1,12 @@
 import Vue from 'vue'
 import router from './router'
 import store from './store'
-import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
 
-NProgress.configure({ showSpinner: false })
+const config = Vue.prototype.$xmGlobalConfig
 
 router.beforeEach(async(to, from, next) => {
   // start progress bar
-  NProgress.start()
+  if (config.progress && config.progress.enable) Vue.prototype.$progress.start()
 
   // 判断是否登录, 如果未登录, 则跳转到登录页面
   const authInfo = store.state['auth'].authInfo
@@ -71,5 +69,5 @@ router.beforeEach(async(to, from, next) => {
 
 router.afterEach(() => {
   // finish progress bar
-  NProgress.done()
+  if (config.progress && config.progress.enable) Vue.prototype.$progress.done()
 })
