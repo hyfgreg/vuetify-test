@@ -116,7 +116,7 @@ export default {
     },
     // 覆盖该方法支持特殊error的display
     resolveError(err) {
-      if (err.response.data.error_code > 1000) {
+      if (err.response.data && err.response.data.error_code > 1000) {
         this.$snotify.error(err.response.data.error_reason)
       } else {
         this.$snotify.error('请求出错')

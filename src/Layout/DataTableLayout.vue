@@ -27,27 +27,6 @@ export default {
 </script>
 
 <style scoped>
-.container.grid-list-md .row .col {
-    padding: 4px;
-}
-
-.row.column {
-    flex-direction: column;
-}
-
-.filter-bar{
-    flex-basis: 8%;
-}
-
-.content{
-    flex-basis: 84%;
-    overflow:auto;
-}
-
-.pagination{
-    flex-basis: 8%;
-}
-
 div::-webkit-scrollbar{
   width:10px;
   height:10px
