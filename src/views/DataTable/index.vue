@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { api } from '../apis'
+import { api } from '@/apis'
 import DataTableLayout from '@/Layout/DataTableLayout.vue'
 import pageMixin from '@/mixins/page.js'
 

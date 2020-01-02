@@ -43,7 +43,7 @@ const asyncRoutes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('@/views/DataTableView.vue'),
+    component: () => import('@/views/DataTable'),
     meta: {
       menu: true,
       icon: 'pageview',
@@ -53,77 +53,41 @@ const asyncRoutes = [
     }
   },
   {
-    path: '/test',
-    name: 'test',
+    path: '/nested1',
+    name: 'nested1',
     component: () => import('@/components/SubRouterView/index.vue'),
     children: [
       {
-        path: 'index',
-        name: 'test1',
-        component: () => import('@/views/Test1.vue'),
-        meta: {
-          menu: true,
-          icon: 'pageview',
-          title: '测试1',
-          permission: ['take_away']
-        }
-      },
-      {
-        path: 'test_index',
-        name: 'test12',
-        component: () => import('@/views/Test12.vue'),
-        meta: {
-          menu: true,
-          icon: 'pageview',
-          title: '测试2',
-          permission: ['take_away']
-        }
-      }
-    ],
-    meta: {
-      menu: true,
-      icon: 'pageview',
-      title: '测试',
-      permission: ['take_away'],
-      ignoreAuth: true
-    }
-  },
-  {
-    path: '/test2',
-    name: 'test2',
-    component: () => import('@/components/SubRouterView/index.vue'),
-    children: [
-      {
-        path: 'test22',
-        name: 'test22',
+        path: 'nested2',
+        name: 'nested1.nested2',
         component: () => import('@/components/SubRouterView/index.vue'),
         meta: {
           menu: true,
           icon: 'pageview',
-          title: '测试22',
+          title: '嵌套2',
           permission: ['take_away'],
           ignoreAuth: true
         },
         children: [
           {
-            path: 'index',
-            name: 'test222',
-            component: () => import('@/views/Test2.vue'),
+            path: 'nested3-1',
+            name: 'nested1.nested2.nested3-1',
+            component: () => import('@/views/nested-routes/nested3-1.vue'),
             meta: {
               menu: true,
               icon: 'pageview',
-              title: '测试222',
+              title: '嵌套3-1',
               permission: ['take_away']
             }
           },
           {
-            path: 'test2222_index',
-            name: 'test2222',
-            component: () => import('@/views/Test22.vue'),
+            path: 'nested3-2',
+            name: 'nested1.nested2.nested3-2',
+            component: () => import('@/views/nested-routes/nested3-2.vue'),
             meta: {
               menu: true,
               icon: 'pageview',
-              title: '测试2222',
+              title: '嵌套3-2',
               permission: ['take_away']
             }
           }
@@ -133,7 +97,7 @@ const asyncRoutes = [
     meta: {
       menu: true,
       icon: 'pageview',
-      title: '测试2',
+      title: '嵌套1',
       permission: ['take_away'],
       ignoreAuth: true
     }
