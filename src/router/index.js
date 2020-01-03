@@ -16,6 +16,11 @@ const constantRoutes = [
     }
   },
   {
+    path: '/change-password',
+    name: 'changePassword',
+    component: () => import('@/views/auth/auth-change-password')
+  },
+  {
     path: '/',
     name: 'home',
     component: Home,
@@ -43,7 +48,7 @@ const asyncRoutes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('@/views/DataTable'),
+    component: () => import('@/views/data-table'),
     meta: {
       menu: true,
       icon: 'pageview',

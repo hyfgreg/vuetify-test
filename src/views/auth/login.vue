@@ -1,10 +1,10 @@
 <template>
-  <v-container class="page" d-flex fill-height>
-    <v-layout align-center justify-center fill-height>
-      <v-flex xs12 sm8 md6>
+  <v-container fill-height>
+    <v-row class="justify-center align-center fill-height">
+      <v-col cols="6">
         <AuthLoginForm />
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

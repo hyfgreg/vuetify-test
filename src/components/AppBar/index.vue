@@ -6,7 +6,7 @@
     <v-btn v-if="!GM_username && $route.name !== 'login'" text @click.stop="login">
       登录
     </v-btn>
-    <v-btn v-if="GM_username" text>
+    <v-btn v-if="GM_username" text @click.stop="changePassword">
       修改密码
     </v-btn>
     <v-btn v-if="GM_username" text @click.stop="logout">
@@ -36,6 +36,9 @@ export default {
         .then(() => this.$store.dispatch('permission/reset'))
         .then(() => this.$store.dispatch('permission/resetRouter'))
         .then(() => this.$router.push({ name: 'login' }))
+    },
+    changePassword() {
+      this.$router.push({ name: 'changePassword' })
     }
   }
 }
