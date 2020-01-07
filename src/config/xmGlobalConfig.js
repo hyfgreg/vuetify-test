@@ -29,6 +29,8 @@ const xmGlobalConfig = {
   appBarTitle: 'Xmov' || process.env.VUE_APP_projectName, // 修改Xmov为实际的项目app bar title，显示大写字母
   sideBar: true, // 是否启用侧边栏
 
+  frontendPermissionsEnable: true, // 启用frontendPermissions, 需要后台安装permissions_by_db
+
   projectName: process.env.VUE_APP_projectName,
   projectTokenName: process.env.VUE_APP_projectName + '_token',
   eventHub: eventHub,

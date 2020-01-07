@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import { api } from '@/apis'
 import { asyncRoutes, constantRoutes, resetRouter } from '@/router'
 // import originMenu from '@/menu'
@@ -102,6 +103,15 @@ const mutations = {
 
 const actions = {
   getRoles({ commit }) {
+    if (!Vue.xmGlobalConfig.frontendPermissionsEnable) {
+      return new Promise((resolve) => {
+        const roles = []
+        const permissions = []
+        commit('SET_ROLES', roles)
+        commit('SET_PERMISSIONS', permissions)
+        resolve({ roles, permissions })
+      })
+    }
     return new Promise((resolve, reject) => {
       api
         .getUserRoles({ extras: 'frontend_permission' })
