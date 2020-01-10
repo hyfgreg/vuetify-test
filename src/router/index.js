@@ -58,6 +58,17 @@ const asyncRoutes = [
     }
   },
   {
+    path: '/picker',
+    name: 'picker',
+    component: () => import('@/views/picker'),
+    meta: {
+      menu: true,
+      icon: 'pageview',
+      title: 'Picker',
+      ignoreAuth: false
+    }
+  },
+  {
     path: '/nested1',
     name: 'nested1',
     component: () => import('@/components/SubRouterView/index.vue'),
